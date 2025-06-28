@@ -251,7 +251,9 @@
                         totalCards += 360; // To unlock Celestial
                     } else if (currentTier === 'Celestial') {
                         totalCards += calculateCelestialCards(currentLevel, 80);
-                        totalCards += 420; // To unlock Stellar
+                        if (targetTierIndex > tiers.indexOf('Celestial')) {
+                            totalCards += 420; // To unlock Stellar
+                        }
                     } else if (currentTier === 'Stellar') {
                         totalCards += calculateStellarCards(currentLevel, 85);
                         totalCards += 110; // To unlock Immortal
@@ -289,7 +291,7 @@
         function calculateCelestialCards(currentLevel, targetLevel) {
             let total = 0;
             for (let breakdown of celestialBreakdown) {
-                if (currentLevel < breakdown.from && breakdown.to <= targetLevel) {
+                if (currentLevel < breakdown.from && (typeof breakdown.to === 'number' ? breakdown.to <= targetLevel : breakdown.to === 'Stellar')) {
                     total += breakdown.cards;
                 }
             }
@@ -447,7 +449,7 @@
 
         // Add sample hero for demonstration
         window.onload = function() {
-            heroes.push({ name: 'Sample Hero', level: 15, tier: 'Rare', currentCards: 25 });
+            heroes.push({ name: 'Sparkle', level: 71, tier: 'Celestial', currentCards: 29 });
             renderHeroes();
         };
     </script>
