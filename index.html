@@ -3,31 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bullet Echo Hero Card Calculator</title>
+    <title>Bullet Echo Hero Card Calculator - Corrected</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f5f5f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
         }
         .container {
             max-width: 1200px;
             margin: 0 auto;
             background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         h1 {
             color: #333;
             text-align: center;
             margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
         .input-section {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 5px;
-            margin-bottom: 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border-left: 5px solid #007bff;
         }
         .input-row {
             display: grid;
@@ -39,51 +44,70 @@
         label {
             font-weight: bold;
             color: #555;
+            margin-bottom: 5px;
+            display: block;
         }
         input, select {
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
             font-size: 14px;
+            transition: border-color 0.3s ease;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: #007bff;
         }
         button {
-            background: #007bff;
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
             color: white;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border: none;
-            border-radius: 4px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 14px;
+            font-weight: bold;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
         button:hover {
-            background: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,123,255,0.3);
         }
         .results-table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         .results-table th,
         .results-table td {
             border: 1px solid #ddd;
-            padding: 8px;
+            padding: 12px;
             text-align: center;
-            font-size: 13px;
+            font-size: 14px;
         }
         .results-table th {
-            background: #007bff;
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
             color: white;
             font-weight: bold;
         }
         .results-table tbody tr:nth-child(even) {
             background: #f8f9fa;
         }
+        .results-table tbody tr:hover {
+            background: #e3f2fd;
+        }
         .progress-bar {
             width: 100%;
-            height: 20px;
+            height: 25px;
             background: #e9ecef;
-            border-radius: 10px;
+            border-radius: 15px;
             overflow: hidden;
+            position: relative;
         }
         .progress-fill {
             height: 100%;
@@ -95,41 +119,65 @@
             color: white;
             font-size: 12px;
             font-weight: bold;
+            border-radius: 15px;
         }
         .tier-unlocked {
-            background: #d4edda;
+            background: #d4edda !important;
             color: #155724;
+        }
+        .tier-current {
+            background: #fff3cd !important;
+            color: #856404;
         }
         .hero-list {
             margin-bottom: 20px;
         }
         .hero-item {
             background: white;
-            border: 1px solid #ddd;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 4px;
+            border: 2px solid #e9ecef;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .hero-item h4 {
+            margin: 0 0 15px 0;
+            color: #333;
+            font-size: 1.3em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         .remove-hero {
-            background: #dc3545;
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
             color: white;
             border: none;
-            padding: 5px 10px;
-            border-radius: 3px;
+            padding: 8px 16px;
+            border-radius: 8px;
             cursor: pointer;
-            float: right;
+            font-size: 12px;
+            font-weight: bold;
         }
         .remove-hero:hover {
-            background: #c82333;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 10px rgba(220,53,69,0.3);
+        }
+        .calculation-details {
+            background: #f8f9fa;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            color: #666;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Bullet Echo Hero Card Calculator</h1>
+        <h1>🎯 Bullet Echo Hero Card Calculator</h1>
         
         <div class="input-section">
-            <h3>Add Hero</h3>
+            <h3>➕ Add Hero</h3>
             <div class="input-row">
                 <div>
                     <label for="heroName">Hero Name:</label>
@@ -172,64 +220,50 @@
     </div>
 
     <script>
-        const tierData = {
-            Common: { minLevel: 1, maxLevel: 10, totalCards: 35 },
-            Rare: { minLevel: 10, maxLevel: 20, totalCards: 65 },
-            Epic: { minLevel: 20, maxLevel: 30, totalCards: 100 },
-            Legendary: { minLevel: 30, maxLevel: 40, totalCards: 140 },
-            Mythic: { minLevel: 40, maxLevel: 50, totalCards: 200 },
-            Supreme: { minLevel: 50, maxLevel: 60, totalCards: 300 },
-            Ultimate: { minLevel: 60, maxLevel: 70, totalCards: 644 }, // Sum of all individual level requirements
-            Celestial: { minLevel: 70, maxLevel: 80, totalCards: 575 }, // Sum of all individual level requirements
-            Stellar: { minLevel: 80, maxLevel: 85, totalCards: 430 }, // 5 levels × 64 + 110 to unlock
-            Immortal: { minLevel: 85, maxLevel: 90, totalCards: 450 }, // 5 levels × 64 + 130 to unlock Divine
+        // Detailed level-by-level requirements
+        const levelRequirements = {
+            // Common (1-10): 35 total
+            1: 0, 2: 3, 3: 3, 4: 3, 5: 4, 6: 4, 7: 4, 8: 5, 9: 5, 10: 4,
+            // Rare (10-20): 65 total
+            11: 6, 12: 6, 13: 6, 14: 6, 15: 7, 16: 7, 17: 7, 18: 7, 19: 7, 20: 6,
+            // Epic (20-30): 100 total
+            21: 10, 22: 10, 23: 10, 24: 10, 25: 10, 26: 10, 27: 10, 28: 10, 29: 10, 30: 10,
+            // Legendary (30-40): 140 total
+            31: 14, 32: 14, 33: 14, 34: 14, 35: 14, 36: 14, 37: 14, 38: 14, 39: 14, 40: 14,
+            // Mythic (40-50): 200 total
+            41: 20, 42: 20, 43: 20, 44: 20, 45: 20, 46: 20, 47: 20, 48: 20, 49: 20, 50: 20,
+            // Supreme (50-60): 300 total
+            51: 30, 52: 30, 53: 30, 54: 30, 55: 30, 56: 30, 57: 30, 58: 30, 59: 30, 60: 30,
+            // Ultimate (60-70): Individual requirements as specified
+            61: 5, 62: 13, 63: 18, 64: 23, 65: 27, 66: 30, 67: 33, 68: 36, 69: 38, 70: 41,
+            // Celestial (70-80)
+            71: 43, 72: 46, 73: 48, 74: 50, 75: 53, 76: 55, 77: 57, 78: 59, 79: 61, 80: 63,
+            // Stellar (80-85)
+            81: 64, 82: 64, 83: 64, 84: 64, 85: 64,
+            // Immortal (85-90)
+            86: 64, 87: 64, 88: 64, 89: 64, 90: 64
         };
 
-        const ultimateBreakdown = [
-            { from: 60, to: 61, cards: 5 },
-            { from: 61, to: 62, cards: 13 },
-            { from: 62, to: 63, cards: 18 },
-            { from: 63, to: 64, cards: 23 },
-            { from: 64, to: 65, cards: 27 },
-            { from: 65, to: 66, cards: 30 },
-            { from: 66, to: 67, cards: 33 },
-            { from: 67, to: 68, cards: 36 },
-            { from: 68, to: 69, cards: 38 },
-            { from: 69, to: 70, cards: 41 },
-            { from: 70, to: 'Celestial', cards: 360 }
-        ];
+        // Tier unlock requirements
+        const tierUnlocks = {
+            'Celestial': 360,  // From level 70
+            'Stellar': 420,    // From level 80
+            'Immortal': 110,   // From level 85
+            'Divine': 130      // From level 90
+        };
 
-        const celestialBreakdown = [
-            { from: 70, to: 71, cards: 43 },
-            { from: 71, to: 72, cards: 46 },
-            { from: 72, to: 73, cards: 48 },
-            { from: 73, to: 74, cards: 50 },
-            { from: 74, to: 75, cards: 53 },
-            { from: 75, to: 76, cards: 55 },
-            { from: 76, to: 77, cards: 57 },
-            { from: 77, to: 78, cards: 59 },
-            { from: 78, to: 79, cards: 61 },
-            { from: 79, to: 80, cards: 63 },
-            { from: 80, to: 'Stellar', cards: 420 }
-        ];
-
-        const stellarBreakdown = [
-            { from: 80, to: 81, cards: 64 },
-            { from: 81, to: 82, cards: 64 },
-            { from: 82, to: 83, cards: 64 },
-            { from: 83, to: 84, cards: 64 },
-            { from: 84, to: 85, cards: 64 },
-            { from: 85, to: 'Immortal', cards: 110 }
-        ];
-
-        const immortalBreakdown = [
-            { from: 85, to: 86, cards: 64 },
-            { from: 86, to: 87, cards: 64 },
-            { from: 87, to: 88, cards: 64 },
-            { from: 88, to: 89, cards: 64 },
-            { from: 89, to: 90, cards: 64 },
-            { from: 90, to: 'Divine', cards: 130 }
-        ];
+        const tierRanges = {
+            'Common': [1, 10],
+            'Rare': [10, 20],
+            'Epic': [20, 30],
+            'Legendary': [30, 40],
+            'Mythic': [40, 50],
+            'Supreme': [50, 60],
+            'Ultimate': [60, 70],
+            'Celestial': [70, 80],
+            'Stellar': [80, 85],
+            'Immortal': [85, 90]
+        };
 
         let heroes = [];
 
@@ -239,126 +273,70 @@
             const targetTierIndex = tiers.indexOf(targetTier);
             
             if (currentTierIndex > targetTierIndex) return 0;
+            if (currentTierIndex === targetTierIndex) return 0; // Already at target tier
             
             let totalCards = 0;
             
-            // Calculate cards needed for current tier completion
-            if (currentTierIndex < targetTierIndex) {
-                const currentTierData = tierData[currentTier];
-                if (currentTierData) {
-                    if (currentTier === 'Ultimate') {
-                        totalCards += calculateUltimateCards(currentLevel, 70);
-                        totalCards += 360; // To unlock Celestial
-                    } else if (currentTier === 'Celestial') {
-                        totalCards += calculateCelestialCards(currentLevel, 80);
-                        if (targetTierIndex > tiers.indexOf('Celestial')) {
-                            totalCards += 420; // To unlock Stellar
-                        }
-                    } else if (currentTier === 'Stellar') {
-                        totalCards += calculateStellarCards(currentLevel, 85);
-                        totalCards += 110; // To unlock Immortal
-                    } else if (currentTier === 'Immortal') {
-                        totalCards += calculateImmortalCards(currentLevel, 90);
-                        totalCards += 130; // To unlock Divine
-                    } else {
-                        const progress = (currentLevel - currentTierData.minLevel) / (currentTierData.maxLevel - currentTierData.minLevel);
-                        totalCards += Math.ceil(currentTierData.totalCards * (1 - progress));
-                    }
+            // 1. Complete current tier (if not already at max level of current tier)
+            const currentTierRange = tierRanges[currentTier];
+            if (currentLevel < currentTierRange[1]) {
+                for (let level = currentLevel + 1; level <= currentTierRange[1]; level++) {
+                    totalCards += levelRequirements[level] || 0;
                 }
             }
             
-            // Calculate cards for intermediate tiers
+            // 2. Add tier unlock cost (if needed)
+            if (currentTier === 'Ultimate' && targetTierIndex > currentTierIndex) {
+                totalCards += tierUnlocks['Celestial'];
+            } else if (currentTier === 'Celestial' && targetTierIndex > tiers.indexOf('Celestial')) {
+                totalCards += tierUnlocks['Stellar'];
+            } else if (currentTier === 'Stellar' && targetTierIndex > tiers.indexOf('Stellar')) {
+                totalCards += tierUnlocks['Immortal'];
+            } else if (currentTier === 'Immortal' && targetTierIndex > tiers.indexOf('Immortal')) {
+                totalCards += tierUnlocks['Divine'];
+            }
+            
+            // 3. Add intermediate tiers
             for (let i = currentTierIndex + 1; i < targetTierIndex; i++) {
-                const tier = tiers[i];
-                if (tierData[tier]) {
-                    totalCards += tierData[tier].totalCards;
+                const intermediateTier = tiers[i];
+                const range = tierRanges[intermediateTier];
+                if (range) {
+                    for (let level = range[0] + 1; level <= range[1]; level++) {
+                        totalCards += levelRequirements[level] || 0;
+                    }
+                    
+                    // Add tier unlock for intermediate tiers
+                    if (intermediateTier === 'Ultimate') {
+                        totalCards += tierUnlocks['Celestial'];
+                    } else if (intermediateTier === 'Celestial') {
+                        totalCards += tierUnlocks['Stellar'];
+                    } else if (intermediateTier === 'Stellar') {
+                        totalCards += tierUnlocks['Immortal'];
+                    } else if (intermediateTier === 'Immortal') {
+                        totalCards += tierUnlocks['Divine'];
+                    }
                 }
             }
             
             return totalCards;
         }
 
-        function calculateUltimateCards(currentLevel, targetLevel) {
-            let total = 0;
-            for (let breakdown of ultimateBreakdown) {
-                if (currentLevel < breakdown.from && breakdown.to <= targetLevel) {
-                    total += breakdown.cards;
-                }
-            }
-            return total;
-        }
-
-        function calculateCelestialCards(currentLevel, targetLevel) {
-            let total = 0;
-            for (let breakdown of celestialBreakdown) {
-                if (currentLevel < breakdown.from && (typeof breakdown.to === 'number' ? breakdown.to <= targetLevel : breakdown.to === 'Stellar')) {
-                    total += breakdown.cards;
-                }
-            }
-            return total;
-        }
-
-        function calculateStellarCards(currentLevel, targetLevel) {
-            let total = 0;
-            for (let breakdown of stellarBreakdown) {
-                if (currentLevel < breakdown.from && breakdown.to <= targetLevel) {
-                    total += breakdown.cards;
-                }
-            }
-            return total;
-        }
-
-        function calculateImmortalCards(currentLevel, targetLevel) {
-            let total = 0;
-            for (let breakdown of immortalBreakdown) {
-                if (currentLevel < breakdown.from && breakdown.to <= targetLevel) {
-                    total += breakdown.cards;
-                }
-            }
-            return total;
-        }
-
-        function getProgressPercentage(currentTier, currentLevel) {
-            const tierInfo = tierData[currentTier];
-            if (!tierInfo) return 100;
+        function getCurrentTierProgress(currentTier, currentLevel) {
+            const range = tierRanges[currentTier];
+            if (!range) return 100;
             
-            if (currentTier === 'Ultimate') {
-                // Calculate progress based on detailed breakdown
-                let completedCards = 0;
-                for (let breakdown of ultimateBreakdown) {
-                    if (currentLevel > breakdown.from) {
-                        completedCards += breakdown.cards;
-                    }
+            let totalTierCards = 0;
+            let completedCards = 0;
+            
+            for (let level = range[0] + 1; level <= range[1]; level++) {
+                const levelCards = levelRequirements[level] || 0;
+                totalTierCards += levelCards;
+                if (level <= currentLevel) {
+                    completedCards += levelCards;
                 }
-                return Math.min(100, (completedCards / tierData.Ultimate.totalCards) * 100);
-            } else if (currentTier === 'Celestial') {
-                let completedCards = 0;
-                for (let breakdown of celestialBreakdown) {
-                    if (currentLevel > breakdown.from) {
-                        completedCards += breakdown.cards;
-                    }
-                }
-                return Math.min(100, (completedCards / tierData.Celestial.totalCards) * 100);
-            } else if (currentTier === 'Stellar') {
-                let completedCards = 0;
-                for (let breakdown of stellarBreakdown) {
-                    if (currentLevel > breakdown.from) {
-                        completedCards += breakdown.cards;
-                    }
-                }
-                return Math.min(100, (completedCards / tierData.Stellar.totalCards) * 100);
-            } else if (currentTier === 'Immortal') {
-                let completedCards = 0;
-                for (let breakdown of immortalBreakdown) {
-                    if (currentLevel > breakdown.from) {
-                        completedCards += breakdown.cards;
-                    }
-                }
-                return Math.min(100, (completedCards / tierData.Immortal.totalCards) * 100);
-            } else {
-                const progress = (currentLevel - tierInfo.minLevel) / (tierInfo.maxLevel - tierInfo.minLevel);
-                return Math.min(100, progress * 100);
             }
+            
+            return totalTierCards > 0 ? (completedCards / totalTierCards) * 100 : 100;
         }
 
         function addHero() {
@@ -401,7 +379,8 @@
                 const currentTierIndex = tiers.indexOf(hero.tier);
                 
                 let tableHTML = `
-                    <h4>${hero.name} - Level ${hero.level} (${hero.tier})
+                    <h4>
+                        <span>${hero.name} - Level ${hero.level} (${hero.tier}) - ${hero.currentCards} cards</span>
                         <button class="remove-hero" onclick="removeHero(${index})">Remove</button>
                     </h4>
                     <table class="results-table">
@@ -421,19 +400,32 @@
                     const totalCardsNeeded = calculateCardsNeeded(hero.tier, hero.level, targetTier);
                     const cardsToCollect = Math.max(0, totalCardsNeeded - hero.currentCards);
                     const isCurrentTier = i === currentTierIndex;
-                    const progress = isCurrentTier ? getProgressPercentage(hero.tier, hero.level) : (totalCardsNeeded === 0 ? 100 : 0);
                     
-                    const rowClass = totalCardsNeeded === 0 ? 'tier-unlocked' : '';
+                    let progress = 0;
+                    let rowClass = '';
+                    
+                    if (isCurrentTier) {
+                        progress = getCurrentTierProgress(hero.tier, hero.level);
+                        rowClass = 'tier-current';
+                    } else if (totalCardsNeeded === 0) {
+                        progress = 100;
+                        rowClass = 'tier-unlocked';
+                    } else {
+                        progress = hero.currentCards >= totalCardsNeeded ? 100 : (hero.currentCards / totalCardsNeeded) * 100;
+                    }
+                    
+                    const displayTotal = totalCardsNeeded === 0 ? 'Current Tier' : totalCardsNeeded;
+                    const displayCollect = totalCardsNeeded === 0 ? 'In Progress' : (cardsToCollect === 0 ? 'Ready!' : cardsToCollect);
                     
                     tableHTML += `
                         <tr class="${rowClass}">
-                            <td>${targetTier}</td>
-                            <td>${totalCardsNeeded === 0 ? 'Unlocked' : totalCardsNeeded}</td>
-                            <td>${totalCardsNeeded === 0 ? 'Unlocked' : (cardsToCollect === 0 ? 'Ready!' : cardsToCollect)}</td>
+                            <td><strong>${targetTier}</strong></td>
+                            <td>${displayTotal}</td>
+                            <td>${displayCollect}</td>
                             <td>
                                 <div class="progress-bar">
-                                    <div class="progress-fill" style="width: ${progress}%">
-                                        ${Math.round(progress)}%
+                                    <div class="progress-fill" style="width: ${Math.min(100, progress)}%">
+                                        ${Math.round(Math.min(100, progress))}%
                                     </div>
                                 </div>
                             </td>
@@ -442,6 +434,20 @@
                 }
 
                 tableHTML += '</tbody></table>';
+                
+                // Add calculation details
+                const nextTierIndex = currentTierIndex + 1;
+                if (nextTierIndex < tiers.length) {
+                    const nextTier = tiers[nextTierIndex];
+                    const cardsForNext = calculateCardsNeeded(hero.tier, hero.level, nextTier);
+                    tableHTML += `
+                        <div class="calculation-details">
+                            <strong>Next Goal:</strong> ${cardsForNext} cards needed to reach ${nextTier} tier
+                            ${hero.currentCards >= cardsForNext ? ' ✅ Ready to upgrade!' : ` (${cardsForNext - hero.currentCards} more needed)`}
+                        </div>
+                    `;
+                }
+                
                 heroDiv.innerHTML = tableHTML;
                 heroList.appendChild(heroDiv);
             });
